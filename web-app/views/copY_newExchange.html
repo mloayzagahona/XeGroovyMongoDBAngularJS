@@ -1,0 +1,42 @@
+<div ng-controller="NewExchangeCtrl">
+	<form class="form-horizontal" ng-submit="signupForm()" name="myform" formAutofillFix autocomplete="off">
+		<h1 class="page-header">New Exchange</h1>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="currFrom">Currency From</label>
+				<div class="controls">
+					<input id="currFrom" name="currFrom" ng-pattern="/[a-zA-Z]+/" type="text" class="input-block-level"
+					required="true" ng-model="exchange.currFrom" list="dlCurrencies"></input>
+					<span class="help-inline" ng-show="myform.currFrom.$error.required">Required</span>
+					<span class="help-inline" ng-show="myform.currFrom.$error.pattern">Only Letters</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="currTo">Currency To</label>
+				<div class="controls">
+					<input id="currTo" name="currTo" type="text" ng-pattern="/[a-zA-Z]+/" class="input-block-level"
+					required="true" ng-model="exchange.currTo" list="dlCurrencies"></input>
+					<span class="help-inline" ng-show="myform.currTo.$error.required">Required</span>
+					<span class="help-inline" ng-show="myform.currTo.$error.pattern">Only Letters</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="rateFrom">Rate From</label>
+				<div class="controls">
+					<input id="rateFrom" name="rateFrom" type="number" ng-pattern="/^\d+(\.\d{1,4})?$/"
+					class="input-block-level" required="true" ng-model="exchange.rateFrom"></input>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.required">Required</span>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.pattern">Max 4 decimals</span>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.number">Invalid number</span>
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button class="btn btn-primary" type="submit" ng-disabled="!myform.$valid">Save</button>
+			<button class="btn btn-primary" ng-click="cancelExchange()">Cancel</button>
+		</div>
+		<datalist id="dlCurrencies">
+		<option  ng-repeat="it in currencies" value="{{it}}">
+			</datalist>
+		</form>
+	</div>

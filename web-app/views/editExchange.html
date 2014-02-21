@@ -1,0 +1,22 @@
+<div ng-controller="EditExchangeCtrl">
+	<form class="form-horizontal" ng-submit="signupForm()" name="myform" formAutofillFix autocomplete="off">
+		<h1 class="page-header">Edit Exchange ({{exchange.currFrom}} - {{exchange.currTo}})</h1>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="rate">Rate From-To</label>
+				<div class="controls">
+					<input id="rateFrom" name="rateFrom" type="number" ng-pattern="/^\d+(\.\d{1,4})?$/" 
+					class="input-block-level" required="true" ng-model="exchange.rateFrom" ng-value="exchange.rateFrom" >
+					</input>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.required">Required</span>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.number">Invalid number</span>
+					<span class="help-inline" ng-show="myform.rateFrom.$error.pattern">Max. 4 decimals</span>
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button class="btn btn-primary" ng-disabled="!myform.$valid">Update</button>
+			<button ng-click="cancelExchange()" class="btn btn-primary">Cancel</button>
+		</div>
+	</form>
+</div>

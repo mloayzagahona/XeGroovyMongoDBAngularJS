@@ -1,0 +1,32 @@
+<div class="jumbotron">
+    <div ng-controller="ConverterCtrl">
+        <form class="form-horizontal" ng-submit="convertForm()" name="myform" formAutofillFix autocomplete="off">
+            <h1 class="page-header">Currency Converter</h1>
+            <fieldset>
+                <div class="control-group">
+                    <div class="controls" ng-class="{'has-error':myform.amount.$invalid && !myform.amount.$pristine }">
+                        <input id="amount" name="amount" type="number" ng-pattern="/^\d+(\.\d+)?$/"
+                        class="input-block-level" required="true" ng-model="amount"></input>
+                        <span class="help-inline" ng-show="myform.rateFrom.$error.pattern">Invalid number</span>
+                        <span class="help-inline" ng-show="myform.amount.$error.required">Required</span>
+                    </div>
+                    <div class="controls">
+                        <select ng-model="exchange.currFrom" name="currFrom" id="currFrom" 
+                                required="true" ng-change="validateCombination('currFrom')">
+                            <option ng-repeat="it in currencies" value="{{it.id}}">{{it.name}}</option>
+                        </select> to
+                        <select ng-model="exchange.currTo" name="currTo" id="currTo" 
+                                required="true" ng-change="validateCombination('currTo')">
+                            <option ng-repeat="it in currencies" value="{{it.id}}">{{it.name}}</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit" ng-disabled="isNotReadyToSubmit || myform.$invalid">Do it!</button>
+                    <span ng-show="(message !== undefined) && (data !== null)">{{message}}</span>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="footer">
+    <p>♥ from Manuel Loayza</p>
+</div>

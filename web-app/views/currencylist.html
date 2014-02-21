@@ -1,0 +1,19 @@
+<div ng-controller="CurrencyCtrl">
+    <h1 class="page-header">Currency List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="25px">PREFIX</th>
+                <th>NAME</th>
+                <th>COUNTRY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in currencies">
+                <td>{{e.id}}</td>
+                <td>{{e.name}}</td>
+                <td>{{e.country}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

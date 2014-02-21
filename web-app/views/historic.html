@@ -1,0 +1,79 @@
+<style type="text/css" media="screen">
+
+.ng-invalid { border: 1px solid red; }
+body { font-family: Arial,Helvetica,sans-serif; }
+body, td, th { font-size: 14px; margin: 0; }
+table { border-collapse: separate; border-spacing: 2px; display: table; margin-bottom: 0; margin-top: 0; -moz-box-sizing: border-box; text-indent: 0; }
+a:link, a:visited, a:hover { color: #5D6DB6; text-decoration: none; }
+.error { color: red; }
+.ui-helper-hidden { display: none;}
+</style>
+<div ng-controller="HistoricCtrl">
+    <h1 class="page-header">Exchange Historic Report</h1>
+    <!--table ng-table="tableParams" class="table ng-table-responsive">
+        <tr ng-repeat="historic in historic">
+            <td data-title="'Currency From'">
+                {{historic.currFrom}}
+            </td>
+            <td data-title="'Currency To'">
+                {{historic.currTo}}
+            </td>
+            <td data-title="'Rate From'">
+                {{historic.rateFrom}}
+            </td>
+            <td data-title="'Rate To'">
+                {{historic.rateTo}}
+            </td>
+            <td data-title="'Created At'">
+                {{historic.createdAt}}
+            </td>
+            <td data-title="'Updated At'">
+                {{historic.updatedAt}}
+            </td>
+            <td data-title="'Deleted At'">
+                {{historic.deletedAt}}
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="25px">FROM</th>
+                <th width="25px">TO</th>
+                <th>Rate From</th>
+                <th>Rate To</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Deleted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in historics">
+                <td>{{e.currFrom}}</td>
+                <td>{{e.currTo}}</td>
+                <td>{{e.rateFrom}}</td>
+                <td>{{e.rateTo}}</td>
+                <td>{{e.createdAt}}</td>
+                <td>{{e.updatedAt}}</td>
+                <td>{{e.deletedAt}}</td>
+            </tr>
+        </tbody>
+    </table-->
+    <table my-table="overrideOptions"
+        aa-data="historics"
+        ao-column-defs="columnDefs"
+        fn-row-callback="myCallback" width="100%">
+        <thead>
+            <tr>
+                <th style="width:70px">FROM</th>
+                <th style="width:70px">TO</th>
+                <th style="width:95px">Rate From</th>
+                <th style="width:95px">Rate To</th>
+                <th style="width:120px">Created At</th>
+                <th style="width:120px">Updated At</th>
+                <th style="width:120px">Deleted At</th>
+            </tr>
+        </thead>
+    </table>
+    {{message}}
+</div>

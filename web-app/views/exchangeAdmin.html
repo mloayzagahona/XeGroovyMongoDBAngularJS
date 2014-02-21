@@ -1,0 +1,33 @@
+<div ng-controller="ExchangeCtrl">
+    <h1 class="page-header">Exchange Admin</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="25px">FROM</th>
+                <th width="25px">TO</th>
+                <th>Rate From</th>
+                <th>Rate To</th>
+                <th>Update At</th>
+                <th width="50px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in exchanges">
+                <td>{{e.currFrom}}</td>
+                <td>{{e.currTo}}</td>
+                <td>{{e.rateFrom}}</td>
+                <td>{{e.rateTo}}</td>
+                <td>{{e.updatedAt}}</td>
+                <td><a ng-click="editExchange($index)" >
+                    <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                <a ng-click="delExchange($index)" ><i class="glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="controls">
+        <button type="button" class="btn btn-success" ng-click="addExchange()">
+            <b class="icon-plus-sign"></b>Add Exchange</button>
+        <span class="help-inline" ng-show="(message !== undefined) && (data !== null)">{{message}}</span>
+    </p>
+</div>
