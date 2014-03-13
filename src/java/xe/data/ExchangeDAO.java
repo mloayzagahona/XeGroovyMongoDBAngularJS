@@ -12,6 +12,7 @@ import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 
 import xe.domain.Exchange;
+import xe.domain.Historic;
 import xe.exception.ExchangeExistentException;
 import xe.exception.IMessagesException;
 import xe.exception.XEException;
@@ -38,11 +39,13 @@ public class ExchangeDAO extends BasicDAO<Exchange, ObjectId> implements
 	@Override
 	public void updateExchange(Exchange exchange) {
 		Query<Exchange> updateQuery = createQuery().field(Mapper.ID_KEY).equal(
-				new ObjectId(exchange.getObjid()));
+				exchange.getObjid());
+		Historic historic = exchange.getHistorics().get(0);
 		UpdateOperations<Exchange> ops = createUpdateOperations()
 				.set("rateFrom", exchange.getRateFrom())
 				.set("rateTo", exchange.getRateTo())
-				.set("updatedAt", new Date());
+				.set("updatedAt", new Date())
+				.add("historics", historic.getObjid());
 		update(updateQuery, ops);
 	}
 
@@ -62,6 +65,7 @@ public class ExchangeDAO extends BasicDAO<Exchange, ObjectId> implements
 					IMessagesException.EXIST_COMBINATION_CODE);
 		}
 		exchange.setUpdatedAt(new Date());
+
 		return save(exchange);
 	}
 
@@ -78,4 +82,5 @@ public class ExchangeDAO extends BasicDAO<Exchange, ObjectId> implements
 	public void removeExchange(Exchange exchange) {
 		delete(exchange);
 	}
+
 }

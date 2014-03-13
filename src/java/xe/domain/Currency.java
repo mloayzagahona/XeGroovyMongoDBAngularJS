@@ -5,9 +5,10 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 @Entity("currencies")
-
 public class Currency {
-	@Id private ObjectId _id;
+	@Id
+	private ObjectId _id;
+
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -89,7 +90,8 @@ public class Currency {
 
 	@Override
 	public String toString() {
-		return "Currency [_id=" + _id + ", id=" + id + ", name=" + name + ", country=" + country + "]";
+		return "Currency [_id=" + _id + ", id=" + id + ", name=" + name
+				+ ", country=" + country + "]";
 	}
 
 }

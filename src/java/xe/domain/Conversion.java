@@ -16,7 +16,7 @@ public class Conversion {
 	private Date updatedAt;
 	private Double amount;
 	private Double rateUsed;
-
+	
 	public Conversion() {
 	}
 

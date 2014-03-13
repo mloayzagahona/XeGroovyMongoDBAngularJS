@@ -1,9 +1,14 @@
 package xe.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Indexed;
+import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.utils.IndexDirection;
 
 @Entity("exchanges")
 public class Exchange {
@@ -20,13 +25,18 @@ public class Exchange {
 	}
 
 	@Id
-	private String objid;
-	private String currFrom;
+	private ObjectId objid;
+	@Indexed(value = IndexDirection.ASC, name = "currencyfrom")
+	private 																																						String currFrom;
+	@Indexed(value = IndexDirection.ASC, name = "currencyto")
 	private String currTo;
 	private Double rateFrom;
 	private Double rateTo;
 	private Date updatedAt;
-
+	
+	@Reference(idOnly=true, lazy=true)
+	private List<Historic> historics;
+	
 	public String getCurrFrom() {
 		return currFrom;
 	}
@@ -70,7 +80,7 @@ public class Exchange {
 	/**
 	 * @return the objid
 	 */
-	public String getObjid() {
+	public ObjectId getObjid() {
 		return objid;
 	}
 
@@ -78,7 +88,7 @@ public class Exchange {
 	 * @param objid
 	 *            the objid to set
 	 */
-	public void setObjid(String objid) {
+	public void setObjid(ObjectId objid) {
 		this.objid = objid;
 	}
 
@@ -175,6 +185,14 @@ public class Exchange {
 
 	public static Double inverse(double amount, int approx) {
 		return (Math.round(1 / amount * Math.pow(10, approx))) / (double)(Math.pow(10, approx));
+	}
+
+	public List<Historic> getHistorics() {
+		return historics;
+	}
+
+	public void setHistorics(List<Historic> historics) {
+		this.historics = historics;
 	}
 
 }

@@ -2,6 +2,7 @@ package xe.domain;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -9,7 +10,7 @@ import org.mongodb.morphia.annotations.Id;
 public class Historic {
 
 	@Id
-	private String objid;
+	private ObjectId objid;
 	private String currFrom;
 	private String currTo;
 	private Double rateFrom;
@@ -32,14 +33,14 @@ public class Historic {
 	/**
 	 * @return the objid
 	 */
-	public String getObjid() {
+	public ObjectId getObjid() {
 		return objid;
 	}
 
 	/**
 	 * @param objid the objid to set
 	 */
-	public void setObjid(String objid) {
+	public void setObjid(ObjectId objid) {
 		this.objid = objid;
 	}
 
